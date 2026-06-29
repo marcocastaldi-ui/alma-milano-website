@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Today — ALMA</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero {
+      background: var(--bg-deep);
+      padding: 3.5rem 1.5rem 2.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--panel-light);
+    }
+    .page-hero .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .page-hero h1 {
+      font-family: 'Cambria', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    /* ── Date badge ── */
+    .date-badge {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.3rem 0.9rem;
+      border: 1px solid var(--panel-light);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Video block ── */
+    .video-wrap {
+      margin: 2.5rem 0;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--panel-light);
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── Speech text ── */
+    .speech-block {
+      background: var(--panel);
+      border: 1px solid var(--panel-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .speech-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    .speech-text {
+      color: var(--text);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      white-space: pre-line;
+      margin: 0;
+    }
+
+    /* ── Weather strip ── */
+    .weather-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .weather-item {
+      background: var(--panel);
+      border: 1px solid var(--panel-light);
+      border-radius: 8px;
+      padding: 0.75rem 1.1rem;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+
+    .weather-item strong {
+      color: var(--gold);
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .archive-link {
+      margin-top: 2.5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">A.L.M.A.</a>
+  <ul class="nav-links">
+    <li><a href="how-it-works.html">How</a></li>
+    <li><a href="today.html" class="active">Today</a></li>
+    <li><a href="archive.html">Archive</a></li>
+    <li><a href="why.html">Why</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="page-hero">
+    <p class="eyebrow">Daily briefing</p>
+    <h1>Good morning, Milan</h1>
+    <span class="date-badge" id="today-date">Loading…</span>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <div id="loading" class="state-msg">Loading today's briefing…</div>
+      <div id="error" class="state-msg" style="display:none; color: var(--accent);">
+        No briefing available yet. Check back after 9 AM.
+      </div>
+
+      <div id="content" style="display:none;">
+
+        <div class="video-wrap">
+          <video id="alma-video" controls preload="metadata" playsinline>
+            <source id="video-src" src="" type="video/mp4" />
+            Your browser does not support video.
+          </video>
+        </div>
+
+        <!-- Weather -->
+        <div class="weather-strip" id="weather-strip"></div>
+
+        <!-- Speech text -->
+        <div class="speech-block">
+          <p class="speech-label">Today's script</p>
+          <p class="speech-text" id="speech-text"></p>
+        </div>
+
+        <div class="archive-link">
+          <a href="archive.html" class="btn btn-outline">Browse all briefings →</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>ALMA · AI Local Milan Advisor · EssilorLuxottica Performance Team · 2026</p>
+</footer>
+
+<script src="supabase.js"></script>
+<script>
+  function formatDate(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function renderWeather(snapshot) {
+    if (!snapshot) return '';
+    const items = [];
+    if (snapshot.condition) items.push({ label: 'Conditions', val: snapshot.condition });
+    if (snapshot.temp_c !== undefined) items.push({ label: 'Temperature', val: `${snapshot.temp_c}°C` });
+    if (snapshot.feels_like_c !== undefined) items.push({ label: 'Feels like', val: `${snapshot.feels_like_c}°C` });
+    if (snapshot.humidity !== undefined) items.push({ label: 'Humidity', val: `${snapshot.humidity}%` });
+    if (snapshot.wind_kph !== undefined) items.push({ label: 'Wind', val: `${snapshot.wind_kph} km/h` });
+    return items.map(i => `
+      <div class="weather-item">
+        <strong>${i.label}</strong>${i.val}
+      </div>`).join('');
+  }
+
+  async function init() {
+    try {
+      const entry = await getLatestVideo();
+      document.getElementById('loading').style.display = 'none';
+
+      if (!entry) {
+        document.getElementById('error').style.display = 'block';
+        return;
+      }
+
+      document.getElementById('today-date').textContent = formatDate(entry.speech_date);
+      document.getElementById('video-src').src = entry.video_url;
+      document.getElementById('alma-video').load();
+      document.getElementById('speech-text').textContent = entry.speech_text ?? '';
+      document.getElementById('weather-strip').innerHTML = renderWeather(entry.weather_snapshot);
+      document.getElementById('content').style.display = 'block';
+
+    } catch (e) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'block';
+      console.error(e);
+    }
+  }
+
+  init();
+</script>
+
+</body>
+</html>

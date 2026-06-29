@@ -1,0 +1,184 @@
+/* ============================================================
+   ALMA — AI Local Milan Advisor | Global Stylesheet
+   ============================================================ */
+
+:root {
+  --bg: #0A0A0A;
+  --bg-deep: #000000;
+  --panel: #1A1612;
+  --panel-light: #2A2622;
+  --text: #F5F1EB;
+  --text-dim: #9C9890;
+  --accent: #D97757;
+  --gold: #E8C181;
+  --green: #7FAE6E;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Calibri', 'Gill Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: 'Cambria', 'Georgia', serif;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(2.2rem, 6vw, 4rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.4rem); color: var(--gold); margin-bottom: 1rem; }
+h3 { font-size: 1.2rem; color: var(--accent); margin-bottom: 0.5rem; }
+
+p { margin-bottom: 1rem; color: var(--text); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--gold); }
+
+/* ── Nav ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--panel-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 56px;
+}
+
+.nav-logo {
+  font-family: 'Cambria', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active { color: var(--accent); }
+
+/* ── Layout ── */
+main { padding-top: 56px; }
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--panel-light);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.4rem;
+  border-radius: 6px;
+  font-family: 'Calibri', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--panel-light);
+  color: var(--text-dim);
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Tag / badge ── */
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.tag-accent { background: rgba(217,119,87,0.15); color: var(--accent); }
+.tag-gold   { background: rgba(232,193,129,0.12); color: var(--gold); }
+.tag-green  { background: rgba(127,174,110,0.12); color: var(--green); }
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--panel-light);
+  margin: 2.5rem 0;
+}
+
+/* ── Loading / error ── */
+.state-msg {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+/* ── Footer ── */
+footer {
+  border-top: 1px solid var(--panel-light);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  nav { padding: 0 1rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.78rem; }
+  .section { padding: 2.5rem 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

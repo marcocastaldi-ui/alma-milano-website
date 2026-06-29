@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALMA — AI Local Milan Advisor</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Hero ── */
+    .hero {
+      min-height: calc(100vh - 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: var(--bg-deep);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle ambient glow behind title */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(217,119,87,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Cambria', serif;
+      font-size: clamp(3.5rem, 12vw, 8rem);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cambria', serif;
+      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      color: var(--text-dim);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ── Team section ── */
+    .team-section {
+      background: var(--panel);
+      border-top: 1px solid var(--panel-light);
+      border-bottom: 1px solid var(--panel-light);
+    }
+
+    .team-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .team-pill {
+      background: var(--bg);
+      border: 1px solid var(--panel-light);
+      border-radius: 999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.88rem;
+      color: var(--text-dim);
+    }
+
+    /* ── What is ALMA ── */
+    .what-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .what-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-light);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+
+    .what-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .what-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .what-card p {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">A.L.M.A.</a>
+  <ul class="nav-links">
+    <li><a href="how-it-works.html">How</a></li>
+    <li><a href="today.html">Today</a></li>
+    <li><a href="archive.html">Archive</a></li>
+    <li><a href="why.html">Why</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero">
+    <p class="hero-eyebrow">EssilorLuxottica · Performance Team · Algoritmi Ribelli</p>
+    <h1 class="hero-title">ALMA</h1>
+    <p class="hero-subtitle">AI Local Milan Advisor</p>
+    <p class="hero-desc">
+      Every weekday morning, ALMA reads Milan's agenda, checks the weather,
+      and sends the Performance Team a one-minute video briefing — built end-to-end
+      with AI, orchestrated by six people in two weeks.
+    </p>
+    <div class="hero-ctas">
+      <a href="today.html" class="btn btn-primary">Watch today's briefing</a>
+      <a href="how-it-works.html" class="btn btn-outline">How it works</a>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="team-section section">
+    <div class="container">
+      <p class="team-label">Built by Algoritmi Ribelli</p>
+      <div class="team-grid">
+        <span class="team-pill">Sofia Priolo</span>
+        <span class="team-pill">Clarissa Bonuzzi</span>
+        <span class="team-pill">Alessandro Ciorba</span>
+        <span class="team-pill">Giovanni Gentile</span>
+        <span class="team-pill">Davide Broglia</span>
+        <span class="team-pill">Marco Castaldi</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is ALMA -->
+  <section class="section">
+    <div class="container">
+      <h2>What ALMA does</h2>
+      <p style="color: var(--text-dim); max-width: 600px;">
+        ALMA is a daily AI concierge for the Milan office. Each morning it pulls real city data,
+        writes a personalised briefing in its own voice, and delivers it as a video — automatically.
+      </p>
+
+      <div class="what-grid">
+        <div class="what-card">
+          <div class="what-icon">🌤</div>
+          <h3>Weather</h3>
+          <p>Real-time Milan forecast pulled from open sources every morning.</p>
+        </div>
+        <div class="what-card">
+          <div class="what-icon">🎭</div>
+          <h3>City events</h3>
+          <p>Concerts, exhibitions, markets — curated for the week ahead.</p>
+        </div>
+        <div class="what-card">
+          <div class="what-icon">🎙</div>
+          <h3>AI speech</h3>
+          <p>Claude Sonnet writes the script in ALMA's voice. Every day, unique.</p>
+        </div>
+        <div class="what-card">
+          <div class="what-icon">🎬</div>
+          <h3>Video delivery</h3>
+          <p>Avatar + voice + subtitles, rendered and emailed to the team by 9 AM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>ALMA · AI Local Milan Advisor · EssilorLuxottica Performance Team · 2026</p>
+</footer>
+
+</body>
+</html>

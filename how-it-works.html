@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How it works — ALMA</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero {
+      background: var(--bg-deep);
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+      border-bottom: 1px solid var(--panel-light);
+    }
+    .page-hero .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .page-hero h1 {
+      font-family: 'Cambria', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--text);
+    }
+    .page-hero p {
+      color: var(--text-dim);
+      max-width: 540px;
+      margin: 1rem auto 0;
+    }
+
+    /* ── Pipeline stages ── */
+    .pipeline {
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    /* vertical connector line */
+    .pipeline::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--gold));
+      opacity: 0.3;
+    }
+
+    .stage {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      align-items: flex-start;
+    }
+
+    .stage-num {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cambria', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--bg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .stage-body { flex: 1; padding-top: 0.4rem; }
+
+    .stage-body h3 {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .stage-body p {
+      color: var(--text-dim);
+      font-size: 0.93rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .stage-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    /* ── Stack ── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .stack-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-light);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+    }
+
+    .stack-card .tool-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .stack-card .tool-role {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    /* ── GitHub Actions ── */
+    .workflow-list {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .workflow-item {
+      background: var(--panel);
+      border: 1px solid var(--panel-light);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .workflow-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+    .workflow-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 0.15rem;
+    }
+
+    .workflow-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">A.L.M.A.</a>
+  <ul class="nav-links">
+    <li><a href="how-it-works.html" class="active">How</a></li>
+    <li><a href="today.html">Today</a></li>
+    <li><a href="archive.html">Archive</a></li>
+    <li><a href="why.html">Why</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="page-hero">
+    <p class="eyebrow">Architecture</p>
+    <h1>How ALMA works</h1>
+    <p>Four stages, seven APIs, zero manual steps on weekday mornings.</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <h2>The pipeline</h2>
+
+      <div class="pipeline">
+
+        <div class="stage">
+          <div class="stage-num">1</div>
+          <div class="stage-body">
+            <h3>Data — Events &amp; Weather</h3>
+            <p>
+              Once a month, a GitHub Action scrapes Milan's cultural calendar and stores events
+              in Supabase Postgres. Each morning it fetches the day's weather snapshot.
+              Everything lives in a single <code>speeches</code> table.
+            </p>
+            <div class="stage-tags">
+              <span class="tag tag-gold">Supabase Postgres</span>
+              <span class="tag tag-accent">GitHub Actions</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-num">2</div>
+          <div class="stage-body">
+            <h3>Speech — ALMA writes her script</h3>
+            <p>
+              <code>generate_speech.py</code> feeds the day's events and weather to Claude Sonnet.
+              The model writes a 60-second briefing in ALMA's voice — warm, local, specific.
+              The text is saved back to Supabase.
+            </p>
+            <div class="stage-tags">
+              <span class="tag tag-accent">Anthropic Claude Sonnet 4.6</span>
+              <span class="tag tag-gold">Python</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-num">3</div>
+          <div class="stage-body">
+            <h3>Video — Avatar + voice + subtitles</h3>
+            <p>
+              <code>generate_video.py</code> chains four AI services: ElevenLabs (TTS, voice Bianca)
+              → Kling (talking-head avatar, SUMMER image) → Whisper (word-level timing)
+              → ffmpeg (branded intro/outro + burned subtitles). Final MP4 is uploaded to Supabase Storage.
+            </p>
+            <div class="stage-tags">
+              <span class="tag tag-accent">ElevenLabs TTS</span>
+              <span class="tag tag-accent">Kling Avatar</span>
+              <span class="tag tag-gold">Whisper</span>
+              <span class="tag tag-green">ffmpeg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stage">
+          <div class="stage-num">4</div>
+          <div class="stage-body">
+            <h3>Email — Delivered to the team</h3>
+            <p>
+              <code>send_email.py</code> uses Resend to deliver a branded HTML email from
+              <code>alma@alma-milano.com</code>. One CTA button links to the video. Done by 9 AM.
+            </p>
+            <div class="stage-tags">
+              <span class="tag tag-accent">Resend</span>
+              <span class="tag tag-gold">HTML email</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="divider" />
+
+      <h2>GitHub Actions workflows</h2>
+
+      <ul class="workflow-list">
+        <li class="workflow-item">
+          <span class="workflow-icon">🗓</span>
+          <div>
+            <div class="workflow-name">monthly_dataset.yml</div>
+            <div class="workflow-desc">Runs on the 25th of each month — scrapes Milan events, populates the DB for the next month.</div>
+          </div>
+        </li>
+        <li class="workflow-item">
+          <span class="workflow-icon">☀️</span>
+          <div>
+            <div class="workflow-name">daily_concierge.yml</div>
+            <div class="workflow-desc">Mon–Fri 09:00 CEST — fetches weather, calls Claude, writes today's speech to Supabase.</div>
+          </div>
+        </li>
+        <li class="workflow-item">
+          <span class="workflow-icon">🎬</span>
+          <div>
+            <div class="workflow-name">generate_video.yml</div>
+            <div class="workflow-desc">Manual trigger — runs the full TTS → Avatar → Whisper → ffmpeg pipeline (~20 min, ~$10).</div>
+          </div>
+        </li>
+        <li class="workflow-item">
+          <span class="workflow-icon">📬</span>
+          <div>
+            <div class="workflow-name">send_email.yml</div>
+            <div class="workflow-desc">Manual trigger — sends today's video email to all recipients via Resend (~10 seconds).</div>
+          </div>
+        </li>
+      </ul>
+
+      <hr class="divider" />
+
+      <h2>Tech stack</h2>
+
+      <div class="stack-grid">
+        <div class="stack-card">
+          <div class="tool-name">Anthropic Claude</div>
+          <div class="tool-role">Script writing (Sonnet 4.6)</div>
+        </div>
+        <div class="stack-card">
+          <div class="tool-name">ElevenLabs</div>
+          <div class="tool-role">Text-to-speech, voice Bianca</div>
+        </div>
+        <div class="stack-card">
+          <div class="tool-name">Kling (fal.ai)</div>
+          <div class="tool-role">AI talking-head avatar</div>
+        </div>
+        <div class="stack-card">
+          <div class="tool-name">Whisper</div>
+          <div class="tool-role">Word-level subtitle timing</div>
+        </div>
+        <div class="stack-card">
+          <div class="tool-name">ffmpeg</div>
+          <div class="tool-role">Video assembly &amp; subtitle burn</div>
+        </div>
+        <div class="stack-card">
+          <div class="tool-name">Supabase</div>
+          <div class="tool-role">Postgres DB + file storage</div>
+        </div>
+        <div class="stack-card">
+          <div class="tool-name">Resend</div>
+          <div class="tool-role">Transactional email delivery</div>
+        </div>
+        <div class="stack-card">
+          <div class="tool-name">GitHub Actions</div>
+          <div class="tool-role">Orchestration &amp; scheduling</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>ALMA · AI Local Milan Advisor · EssilorLuxottica Performance Team · 2026</p>
+</footer>
+
+</body>
+</html>
