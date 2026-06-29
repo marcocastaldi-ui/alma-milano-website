@@ -6,7 +6,6 @@
   <title>ALMA — AI Local Milan Advisor</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ── Hero ── */
     .hero {
       min-height: calc(100vh - 56px);
       display: flex;
@@ -74,7 +73,7 @@
       justify-content: center;
     }
 
-    /* ── Team section ── */
+    /* Team */
     .team-section {
       background: var(--panel);
       border-top: 1px solid var(--panel-light);
@@ -107,36 +106,53 @@
       color: #1a1a1a;
     }
 
-    /* ── What is ALMA ── */
+    /* What grid — 3 top + 2 bottom */
     .what-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .what-grid .card-wide {
+      grid-column: span 1;
+    }
+
+    .what-row-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
 
     .what-card {
       background: var(--accent);
       border: none;
       border-radius: 8px;
-      padding: 1.5rem;
+      padding: 1.8rem;
     }
 
     .what-icon {
-      font-size: 1.6rem;
-      margin-bottom: 0.75rem;
+      font-size: 2.2rem;
+      margin-bottom: 0.9rem;
     }
 
     .what-card h3 {
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
       color: #1a1a1a;
     }
 
     .what-card p {
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       color: #1a1a1a;
       margin: 0;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      .what-grid { grid-template-columns: 1fr; }
+      .what-row-2 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -154,7 +170,6 @@
 
 <main>
 
-  <!-- Hero -->
   <section class="hero">
     <p class="hero-eyebrow">EssilorLuxottica · Performance Team · Algoritmi Ribelli</p>
     <h1 class="hero-title">ALMA</h1>
@@ -168,7 +183,6 @@
     </div>
   </section>
 
-  <!-- Team -->
   <section class="team-section section">
     <div class="container">
       <p class="team-label">Built by Algoritmi Ribelli</p>
@@ -183,36 +197,44 @@
     </div>
   </section>
 
-  <!-- What is ALMA -->
   <section class="section">
     <div class="container">
       <h2>What ALMA does</h2>
-      <p style="color: var(--text-dim); max-width: 600px;">
+      <p style="color: var(--text-dim); max-width: 700px;">
         ALMA is a daily AI concierge for the Milan office — pulling real city data, writing its own script, and delivering it as a video. No human in the loop.
       </p>
 
       <div class="what-grid">
         <div class="what-card">
-          <div class="what-icon">🌤</div>
-          <h3>Weather</h3>
-          <p>Real-time Milan forecast pulled from open sources every morning.</p>
+          <div class="what-icon">🗄️</div>
+          <h3>Dataset creation</h3>
+          <p>Every month, ALMA scrapes Milan's cultural calendar — concerts, exhibitions, theatre — and stores it in Supabase alongside daily weather from Open-Meteo.</p>
         </div>
         <div class="what-card">
-          <div class="what-icon">🎭</div>
-          <h3>City events</h3>
-          <p>Concerts, exhibitions, markets — curated for the week ahead.</p>
-        </div>
-        <div class="what-card">
-          <div class="what-icon">🎙</div>
+          <div class="what-icon">🎙️</div>
           <h3>AI speech</h3>
-          <p>Claude Sonnet writes the script in ALMA's voice. Every day, unique.</p>
+          <p>Claude Sonnet reads the day's events and weather, then writes a 60–100 second briefing in ALMA's own voice — warm, local, specific. Every day, unique.</p>
         </div>
         <div class="what-card">
           <div class="what-icon">🎬</div>
-          <h3>Video delivery</h3>
-          <p>Avatar + voice + subtitles, rendered and emailed to the team by 9 AM.</p>
+          <h3>Video generation</h3>
+          <p>ElevenLabs converts the script to audio, Kling AI generates the avatar video, Whisper times the subtitles, ffmpeg assembles the final branded MP4.</p>
         </div>
       </div>
+
+      <div class="what-row-2">
+        <div class="what-card">
+          <div class="what-icon">📬</div>
+          <h3>Email delivery</h3>
+          <p>Resend delivers a branded HTML email to 84 Performance Team members with a one-click CTA to watch the briefing. Done by 9 AM, every weekday.</p>
+        </div>
+        <div class="what-card">
+          <div class="what-icon">🌐</div>
+          <h3>Website & archive</h3>
+          <p>alma-milano.com hosts every briefing in a live archive. Built by Claude Sonnet, deployed on Vercel, updated automatically with each new video.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
