@@ -21,8 +21,13 @@
     }
     .page-hero h1 {
       font-family: 'Cambria', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(1.8rem, 4vw, 3rem);
       color: var(--text);
+      line-height: 1.2;
+    }
+    .page-hero h1 em {
+      color: var(--accent);
+      font-style: normal;
     }
     .page-hero p {
       color: var(--text-dim);
@@ -30,70 +35,92 @@
       margin: 1rem auto 0;
     }
 
-    /* ── Pipeline stages ── */
-    .pipeline {
-      position: relative;
-      padding: 0.5rem 0;
-    }
-    .pipeline::before {
-      content: '';
-      position: absolute;
-      left: 28px;
-      top: 0; bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--accent), var(--gold));
-      opacity: 0.3;
-    }
-    .stage {
-      display: flex;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      align-items: flex-start;
-    }
-    .stage-num {
-      flex-shrink: 0;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 2px solid var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cambria', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--accent);
-      background: var(--bg);
-      position: relative;
-      z-index: 1;
-    }
-    .stage-body { flex: 1; padding-top: 0.4rem; }
-    .stage-body h3 {
-      font-size: 1.1rem;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-    }
-    .stage-body p {
-      color: var(--text-dim);
-      font-size: 0.93rem;
-      margin-bottom: 0.5rem;
-    }
-    .stage-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-
-    /* ── Visual diagram ── */
+    /* ── Diagram ── */
     .diagram-wrap {
       width: 100%;
       overflow-x: auto;
-      margin: 2rem 0;
+      margin: 2.5rem 0 0;
     }
-    .diagram-wrap svg {
-      min-width: 600px;
-    }
+    .diagram-wrap svg { min-width: 600px; }
     @keyframes pulse { 0%{stroke-dashoffset:24} 100%{stroke-dashoffset:0} }
     .flow { stroke-dasharray:5 3; animation: pulse 1.2s linear infinite; }
     @media (prefers-reduced-motion: reduce) { .flow { animation:none; } }
 
-    /* ── GitHub Actions ── */
+    /* ── Accordion ── */
+    .accordion { margin-top: 0; }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--panel-light);
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      text-align: left;
+      gap: 1rem;
+    }
+
+    .accordion-trigger h3 {
+      font-family: 'Cambria', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .accordion-trigger .stage-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cambria', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .accordion-chevron {
+      flex-shrink: 0;
+      font-size: 1rem;
+      color: var(--text-dim);
+      transition: transform 0.2s;
+    }
+
+    .accordion-item.open .accordion-chevron {
+      transform: rotate(180deg);
+    }
+
+    .accordion-body {
+      display: none;
+      padding: 0 0 1.5rem 3rem;
+    }
+
+    .accordion-item.open .accordion-body {
+      display: block;
+    }
+
+    .accordion-body p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.65;
+    }
+
+    .stage-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    /* ── Workflow list ── */
     .workflow-list {
       list-style: none;
       margin-top: 1.5rem;
@@ -117,12 +144,9 @@
       color: var(--accent);
       margin-bottom: 0.15rem;
     }
-    .workflow-desc {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-    }
+    .workflow-desc { font-size: 0.85rem; color: var(--text-dim); }
 
-    /* ── Tech stack with logos ── */
+    /* ── Tech stack logos ── */
     .logo-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -136,15 +160,17 @@
       background: var(--panel);
       border: 1px solid var(--panel-light);
       border-radius: 10px;
-      padding: 1.2rem 0.75rem 0.75rem;
+      padding: 1.4rem 0.75rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.75rem;
+      transition: border-color 0.2s;
     }
+    .logo-card:hover { border-color: var(--accent); }
     .logo-card img {
-      width: 56px;
-      height: 40px;
+      width: 64px;
+      height: 44px;
       object-fit: contain;
       filter: brightness(0) invert(1);
     }
@@ -176,28 +202,111 @@
 
 <main>
 
+  <!-- ── HERO + DIAGRAM above the fold ── -->
   <div class="page-hero">
     <p class="eyebrow">Architecture</p>
-    <h1>How ALMA works</h1>
-    <p>Five stages, ten APIs, zero manual steps on weekday mornings.</p>
+    <h1>Five stages. <em>Ten APIs.</em> Zero manual steps.</h1>
+    <p>How ALMA goes from a city calendar to a video in your inbox — every morning, automatically.</p>
+
+    <div class="diagram-wrap">
+      <svg width="100%" viewBox="0 0 680 480" role="img">
+        <title>ALMA pipeline diagram</title>
+        <desc>Five-stage linear pipeline: Dataset, Speech, Video, Email, Website</desc>
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <line x1="60" y1="240" x2="620" y2="240" stroke="#2A2622" stroke-width="2"/>
+
+        <!-- STAGE 1 — DATASET (above) -->
+        <line x1="60" y1="198" x2="60" y2="120" stroke="#D97757" stroke-width="1" stroke-dasharray="3 2"/>
+        <rect x="4" y="48" width="112" height="70" rx="7" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
+        <text x="60" y="68" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">milanopocket.it</text>
+        <text x="60" y="82" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">web scraping</text>
+        <text x="60" y="96" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">Open-Meteo API</text>
+        <text x="60" y="112" text-anchor="middle" style="font-size:8px;fill:#7FAE6E;font-family:Calibri,sans-serif">2 .py · 1 YML</text>
+        <circle cx="60" cy="240" r="42" fill="#1A1612" stroke="#D97757" stroke-width="2"/>
+        <text x="60" y="232" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">DATASET</text>
+        <text x="60" y="246" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">CREATION</text>
+        <text x="60" y="260" text-anchor="middle" style="font-size:7.5px;fill:#9C9890;font-family:Calibri,sans-serif">once a month</text>
+        <line class="flow" x1="104" y1="240" x2="152" y2="240" stroke="#D97757" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+        <!-- STAGE 2 — SPEECH (below) -->
+        <line x1="178" y1="284" x2="178" y2="352" stroke="#E8C181" stroke-width="1" stroke-dasharray="3 2"/>
+        <rect x="122" y="354" width="112" height="70" rx="7" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
+        <text x="178" y="374" text-anchor="middle" style="font-size:8.5px;fill:#D97757;font-family:Calibri,sans-serif">Claude Sonnet</text>
+        <text x="178" y="388" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">target 25–45yo EL</text>
+        <text x="178" y="402" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">weather + events</text>
+        <text x="178" y="418" text-anchor="middle" style="font-size:8px;fill:#7FAE6E;font-family:Calibri,sans-serif">2 .py · 1 YML</text>
+        <circle cx="178" cy="240" r="42" fill="#1A1612" stroke="#E8C181" stroke-width="2"/>
+        <text x="178" y="232" text-anchor="middle" style="font-size:9px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">SPEECH</text>
+        <text x="178" y="246" text-anchor="middle" style="font-size:9px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">GENERATION</text>
+        <text x="178" y="260" text-anchor="middle" style="font-size:7.5px;fill:#9C9890;font-family:Calibri,sans-serif">daily · 09:00 CEST</text>
+        <line class="flow" x1="222" y1="240" x2="270" y2="240" stroke="#E8C181" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+        <!-- STAGE 3 — VIDEO (above) -->
+        <line x1="296" y1="198" x2="296" y2="120" stroke="#D97757" stroke-width="1" stroke-dasharray="3 2"/>
+        <rect x="230" y="48" width="132" height="70" rx="7" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
+        <text x="296" y="68" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">ElevenLabs TTS → MP3</text>
+        <text x="296" y="82" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">Kling avatar video</text>
+        <text x="296" y="96" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">Whisper · ffmpeg</text>
+        <text x="296" y="112" text-anchor="middle" style="font-size:8px;fill:#7FAE6E;font-family:Calibri,sans-serif">1 .py · 1 YML</text>
+        <circle cx="296" cy="240" r="42" fill="#1A1612" stroke="#D97757" stroke-width="2"/>
+        <text x="296" y="232" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">VIDEO</text>
+        <text x="296" y="246" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">GENERATION</text>
+        <text x="296" y="260" text-anchor="middle" style="font-size:7.5px;fill:#9C9890;font-family:Calibri,sans-serif">automated · ~20 min</text>
+        <line class="flow" x1="340" y1="240" x2="388" y2="240" stroke="#D97757" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+        <!-- STAGE 4 — EMAIL (below) -->
+        <line x1="414" y1="284" x2="414" y2="352" stroke="#E8C181" stroke-width="1" stroke-dasharray="3 2"/>
+        <rect x="358" y="354" width="112" height="70" rx="7" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
+        <text x="414" y="374" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">Resend API</text>
+        <text x="414" y="388" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">84 recipients</text>
+        <text x="414" y="402" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">HTML email + CTA</text>
+        <text x="414" y="418" text-anchor="middle" style="font-size:8px;fill:#7FAE6E;font-family:Calibri,sans-serif">1 .py · 1 YML</text>
+        <circle cx="414" cy="240" r="42" fill="#1A1612" stroke="#E8C181" stroke-width="2"/>
+        <text x="414" y="232" text-anchor="middle" style="font-size:9px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">EMAIL</text>
+        <text x="414" y="246" text-anchor="middle" style="font-size:9px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">SEND</text>
+        <text x="414" y="260" text-anchor="middle" style="font-size:7.5px;fill:#9C9890;font-family:Calibri,sans-serif">daily · automated</text>
+        <line class="flow" x1="458" y1="240" x2="506" y2="240" stroke="#E8C181" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+
+        <!-- STAGE 5 — WEBSITE (above) -->
+        <line x1="532" y1="198" x2="532" y2="120" stroke="#D97757" stroke-width="1" stroke-dasharray="3 2"/>
+        <rect x="468" y="48" width="128" height="70" rx="7" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
+        <text x="532" y="68" text-anchor="middle" style="font-size:8.5px;fill:#D97757;font-family:Calibri,sans-serif">Built by Claude Sonnet</text>
+        <text x="532" y="82" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">Supabase live data</text>
+        <text x="532" y="96" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">archive auto-updated</text>
+        <text x="532" y="112" text-anchor="middle" style="font-size:8px;fill:#7FAE6E;font-family:Calibri,sans-serif">Vercel autodeploy</text>
+        <circle cx="532" cy="240" r="42" fill="#1A1612" stroke="#D97757" stroke-width="2"/>
+        <text x="532" y="232" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">WEBSITE</text>
+        <text x="532" y="246" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">alma-milano.com</text>
+        <text x="532" y="260" text-anchor="middle" style="font-size:7.5px;fill:#9C9890;font-family:Calibri,sans-serif">live · always on</text>
+
+        <!-- Backbone -->
+        <rect x="4" y="444" width="672" height="16" rx="5" fill="#1A1612" stroke="#1d5c3a" stroke-width="0.5"/>
+        <text x="340" y="456" text-anchor="middle" style="font-size:9px;fill:#3ECF8E;font-family:Calibri,sans-serif;font-weight:700">Supabase — shared backbone · events · speeches · videos · weather</text>
+        <rect x="4" y="464" width="672" height="16" rx="5" fill="#1A1612" stroke="#444" stroke-width="0.5"/>
+        <text x="340" y="476" text-anchor="middle" style="font-size:9px;fill:#9C9890;font-family:Calibri,sans-serif;font-weight:700">GitHub Actions — orchestration · scheduling · 4 YML workflows · 0 manual steps</text>
+      </svg>
+    </div>
   </div>
 
   <section class="section">
     <div class="container">
 
+      <!-- ── ACCORDION ── -->
       <h2>The pipeline</h2>
+      <div class="accordion">
 
-      <div class="pipeline">
-
-        <div class="stage">
-          <div class="stage-num">1</div>
-          <div class="stage-body">
-            <h3>Dataset creation &amp; management</h3>
-            <p>
-              Once a month, a GitHub Action scrapes Milan's cultural calendar via milanopocket.it
-              and web sources, then feeds everything to Claude Sonnet which structures the events
-              in Supabase Postgres. Every morning, Open-Meteo delivers the 3-day weather forecast.
-            </p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <h3><span class="stage-num">1</span> Dataset creation &amp; management</h3>
+            <span class="accordion-chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Once a month, a GitHub Action scrapes Milan's cultural calendar via milanopocket.it and web sources, then feeds everything to Claude Sonnet which structures the events in Supabase Postgres. Every morning, Open-Meteo delivers the 3-day weather forecast.</p>
             <div class="stage-tags">
               <span class="tag tag-gold">Supabase Postgres</span>
               <span class="tag tag-accent">Claude Sonnet</span>
@@ -207,15 +316,13 @@
           </div>
         </div>
 
-        <div class="stage">
-          <div class="stage-num">2</div>
-          <div class="stage-body">
-            <h3>Speech generation</h3>
-            <p>
-              Every morning <code>generate_speech.py</code> pulls the day's events and weather
-              and feeds them to Claude Sonnet with a prompt tuned for a Luxottica audience aged
-              25–45. The model writes a 60–100 second briefing in ALMA's voice and saves it to Supabase.
-            </p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <h3><span class="stage-num">2</span> Speech generation</h3>
+            <span class="accordion-chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Every morning <code>generate_speech.py</code> pulls the day's events and weather and feeds them to Claude Sonnet with a prompt tuned for a Luxottica audience aged 25–45. The model writes a 60–100 second briefing in ALMA's voice and saves it to Supabase.</p>
             <div class="stage-tags">
               <span class="tag tag-accent">Anthropic Claude Sonnet 4.6</span>
               <span class="tag tag-gold">Python</span>
@@ -223,16 +330,13 @@
           </div>
         </div>
 
-        <div class="stage">
-          <div class="stage-num">3</div>
-          <div class="stage-body">
-            <h3>Video generation</h3>
-            <p>
-              <code>generate_video.py</code> chains four services: ElevenLabs converts the script
-              to MP3 (voice Bianca) → Kling generates the talking-head avatar video → Whisper
-              produces word-level subtitle timing → ffmpeg assembles intro, body, outro and burns
-              the subtitles. The final MP4 is uploaded to Supabase Storage.
-            </p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <h3><span class="stage-num">3</span> Video generation</h3>
+            <span class="accordion-chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p><code>generate_video.py</code> chains four services: ElevenLabs converts the script to MP3 (voice Bianca) → Kling generates the talking-head avatar video → Whisper produces word-level subtitle timing → ffmpeg assembles intro, body, outro and burns the subtitles. The final MP4 is uploaded to Supabase Storage.</p>
             <div class="stage-tags">
               <span class="tag tag-accent">ElevenLabs TTS</span>
               <span class="tag tag-accent">Kling Avatar</span>
@@ -243,15 +347,13 @@
           </div>
         </div>
 
-        <div class="stage">
-          <div class="stage-num">4</div>
-          <div class="stage-body">
-            <h3>Email delivery</h3>
-            <p>
-              <code>send_email.py</code> uses Resend to deliver a branded HTML email from
-              <code>alma@alma-milano.com</code> to 84 Performance Team members. One CTA button
-              links to the video, one link to the archive on alma-milano.com. Done by 9 AM.
-            </p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <h3><span class="stage-num">4</span> Email delivery</h3>
+            <span class="accordion-chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p><code>send_email.py</code> uses Resend to deliver a branded HTML email from <code>alma@alma-milano.com</code> to 84 Performance Team members. One CTA button links to the video, one link to the archive on alma-milano.com. Done by 9 AM.</p>
             <div class="stage-tags">
               <span class="tag tag-accent">Resend</span>
               <span class="tag tag-gold">HTML email</span>
@@ -259,15 +361,13 @@
           </div>
         </div>
 
-        <div class="stage">
-          <div class="stage-num">5</div>
-          <div class="stage-body">
-            <h3>Website</h3>
-            <p>
-              alma-milano.com is a static site built by Claude Sonnet, deployed on Vercel
-              and connected to Supabase. It reads live data on every page load — no build step,
-              no automation needed. The archive updates automatically as new videos are uploaded.
-            </p>
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            <h3><span class="stage-num">5</span> Website</h3>
+            <span class="accordion-chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>alma-milano.com is a static site built by Claude Sonnet, deployed on Vercel and connected to Supabase. It reads live data on every page load — no build step, no automation needed. The archive updates automatically as new videos are uploaded.</p>
             <div class="stage-tags">
               <span class="tag tag-gold">Vercel</span>
               <span class="tag tag-accent">Supabase JS</span>
@@ -278,96 +378,10 @@
 
       </div>
 
-      <!-- ── Visual diagram ── -->
-      <div class="diagram-wrap">
-        <svg width="100%" viewBox="0 0 680 480" role="img">
-          <title>ALMA pipeline diagram</title>
-          <desc>Five-stage linear pipeline: Dataset, Speech, Video, Email, Website</desc>
-          <defs>
-            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </marker>
-          </defs>
-
-          <!-- Spine -->
-          <line x1="60" y1="240" x2="620" y2="240" stroke="#2A2622" stroke-width="2"/>
-
-          <!-- STAGE 1 — DATASET (above) -->
-          <line x1="60" y1="198" x2="60" y2="120" stroke="#D97757" stroke-width="1" stroke-dasharray="3 2"/>
-          <rect x="4" y="48" width="112" height="70" rx="7" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
-          <text x="60" y="68" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">milanopocket.it</text>
-          <text x="60" y="82" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">web scraping</text>
-          <text x="60" y="96" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">Open-Meteo API</text>
-          <text x="60" y="112" text-anchor="middle" style="font-size:8px;fill:#7FAE6E;font-family:Calibri,sans-serif">2 .py · 1 YML</text>
-          <circle cx="60" cy="240" r="42" fill="#1A1612" stroke="#D97757" stroke-width="2"/>
-          <text x="60" y="232" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">DATASET</text>
-          <text x="60" y="246" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">CREATION</text>
-          <text x="60" y="260" text-anchor="middle" style="font-size:7.5px;fill:#9C9890;font-family:Calibri,sans-serif">once a month</text>
-          <line class="flow" x1="104" y1="240" x2="152" y2="240" stroke="#D97757" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
-
-          <!-- STAGE 2 — SPEECH (below) -->
-          <line x1="178" y1="284" x2="178" y2="352" stroke="#E8C181" stroke-width="1" stroke-dasharray="3 2"/>
-          <rect x="122" y="354" width="112" height="70" rx="7" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
-          <text x="178" y="374" text-anchor="middle" style="font-size:8.5px;fill:#D97757;font-family:Calibri,sans-serif">Claude Sonnet</text>
-          <text x="178" y="388" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">target 25–45yo EL</text>
-          <text x="178" y="402" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">weather + events</text>
-          <text x="178" y="418" text-anchor="middle" style="font-size:8px;fill:#7FAE6E;font-family:Calibri,sans-serif">2 .py · 1 YML</text>
-          <circle cx="178" cy="240" r="42" fill="#1A1612" stroke="#E8C181" stroke-width="2"/>
-          <text x="178" y="232" text-anchor="middle" style="font-size:9px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">SPEECH</text>
-          <text x="178" y="246" text-anchor="middle" style="font-size:9px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">GENERATION</text>
-          <text x="178" y="260" text-anchor="middle" style="font-size:7.5px;fill:#9C9890;font-family:Calibri,sans-serif">daily · 09:00 CEST</text>
-          <line class="flow" x1="222" y1="240" x2="270" y2="240" stroke="#E8C181" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
-
-          <!-- STAGE 3 — VIDEO (above) -->
-          <line x1="296" y1="198" x2="296" y2="120" stroke="#D97757" stroke-width="1" stroke-dasharray="3 2"/>
-          <rect x="230" y="48" width="132" height="70" rx="7" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
-          <text x="296" y="68" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">ElevenLabs TTS → MP3</text>
-          <text x="296" y="82" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">Kling avatar video</text>
-          <text x="296" y="96" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">Whisper · ffmpeg</text>
-          <text x="296" y="112" text-anchor="middle" style="font-size:8px;fill:#7FAE6E;font-family:Calibri,sans-serif">1 .py · 1 YML</text>
-          <circle cx="296" cy="240" r="42" fill="#1A1612" stroke="#D97757" stroke-width="2"/>
-          <text x="296" y="232" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">VIDEO</text>
-          <text x="296" y="246" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">GENERATION</text>
-          <text x="296" y="260" text-anchor="middle" style="font-size:7.5px;fill:#9C9890;font-family:Calibri,sans-serif">automated · ~20 min</text>
-          <line class="flow" x1="340" y1="240" x2="388" y2="240" stroke="#D97757" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
-
-          <!-- STAGE 4 — EMAIL (below) -->
-          <line x1="414" y1="284" x2="414" y2="352" stroke="#E8C181" stroke-width="1" stroke-dasharray="3 2"/>
-          <rect x="358" y="354" width="112" height="70" rx="7" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
-          <text x="414" y="374" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">Resend API</text>
-          <text x="414" y="388" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">84 recipients</text>
-          <text x="414" y="402" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">HTML email + CTA</text>
-          <text x="414" y="418" text-anchor="middle" style="font-size:8px;fill:#7FAE6E;font-family:Calibri,sans-serif">1 .py · 1 YML</text>
-          <circle cx="414" cy="240" r="42" fill="#1A1612" stroke="#E8C181" stroke-width="2"/>
-          <text x="414" y="232" text-anchor="middle" style="font-size:9px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">EMAIL</text>
-          <text x="414" y="246" text-anchor="middle" style="font-size:9px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">SEND</text>
-          <text x="414" y="260" text-anchor="middle" style="font-size:7.5px;fill:#9C9890;font-family:Calibri,sans-serif">daily · automated</text>
-          <line class="flow" x1="458" y1="240" x2="506" y2="240" stroke="#E8C181" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
-
-          <!-- STAGE 5 — WEBSITE (above) -->
-          <line x1="532" y1="198" x2="532" y2="120" stroke="#D97757" stroke-width="1" stroke-dasharray="3 2"/>
-          <rect x="468" y="48" width="128" height="70" rx="7" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
-          <text x="532" y="68" text-anchor="middle" style="font-size:8.5px;fill:#D97757;font-family:Calibri,sans-serif">Built by Claude Sonnet</text>
-          <text x="532" y="82" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">Supabase live data</text>
-          <text x="532" y="96" text-anchor="middle" style="font-size:8.5px;fill:#9C9890;font-family:Calibri,sans-serif">archive auto-updated</text>
-          <text x="532" y="112" text-anchor="middle" style="font-size:8px;fill:#7FAE6E;font-family:Calibri,sans-serif">Vercel autodeploy</text>
-          <circle cx="532" cy="240" r="42" fill="#1A1612" stroke="#D97757" stroke-width="2"/>
-          <text x="532" y="232" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">WEBSITE</text>
-          <text x="532" y="246" text-anchor="middle" style="font-size:9px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">alma-milano.com</text>
-          <text x="532" y="260" text-anchor="middle" style="font-size:7.5px;fill:#9C9890;font-family:Calibri,sans-serif">live · always on</text>
-
-          <!-- Backbone bars -->
-          <rect x="4" y="444" width="672" height="16" rx="5" fill="#1A1612" stroke="#1d5c3a" stroke-width="0.5"/>
-          <text x="340" y="456" text-anchor="middle" style="font-size:9px;fill:#3ECF8E;font-family:Calibri,sans-serif;font-weight:700">Supabase — shared backbone · events · speeches · videos · weather</text>
-          <rect x="4" y="464" width="672" height="16" rx="5" fill="#1A1612" stroke="#444" stroke-width="0.5"/>
-          <text x="340" y="476" text-anchor="middle" style="font-size:9px;fill:#9C9890;font-family:Calibri,sans-serif;font-weight:700">GitHub Actions — orchestration · scheduling · 4 YML workflows · 0 manual steps</text>
-        </svg>
-      </div>
-
       <hr class="divider" />
 
+      <!-- ── GITHUB ACTIONS ── -->
       <h2>GitHub Actions workflows</h2>
-
       <ul class="workflow-list">
         <li class="workflow-item">
           <span class="workflow-icon">🗓</span>
@@ -387,22 +401,22 @@
           <span class="workflow-icon">🎬</span>
           <div>
             <div class="workflow-name">generate_video.yml</div>
-            <div class="workflow-desc">Manual trigger — runs the full TTS → Avatar → Whisper → ffmpeg pipeline (~20 min, ~$10).</div>
+            <div class="workflow-desc">Part of demo_run — runs the full TTS → Avatar → Whisper → ffmpeg pipeline (~20 min).</div>
           </div>
         </li>
         <li class="workflow-item">
           <span class="workflow-icon">📬</span>
           <div>
             <div class="workflow-name">send_email.yml</div>
-            <div class="workflow-desc">Manual trigger — sends today's video email to all recipients via Resend (~10 seconds).</div>
+            <div class="workflow-desc">Part of demo_run — sends today's video email to all 84 recipients via Resend (~10 seconds).</div>
           </div>
         </li>
       </ul>
 
       <hr class="divider" />
 
+      <!-- ── TECH STACK ── -->
       <h2>Tech stack</h2>
-
       <div class="logo-grid">
         <div class="logo-card">
           <img src="https://utwekatqoausljtydwzn.supabase.co/storage/v1/object/public/assets/Claude.png" alt="Anthropic Claude"/>
@@ -464,6 +478,15 @@
 <footer>
   <p>ALMA · AI Local Milan Advisor · EssilorLuxottica Performance Team · 2026</p>
 </footer>
+
+<script>
+  function toggleAccordion(btn) {
+    const item = btn.closest('.accordion-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
 
 </body>
 </html>
