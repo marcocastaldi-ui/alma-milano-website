@@ -20,7 +20,6 @@
       overflow: hidden;
     }
 
-    /* Subtle ambient glow behind title */
     .hero::before {
       content: '';
       position: absolute;
@@ -34,7 +33,7 @@
     }
 
     .hero-eyebrow {
-      font-size: 0.78rem;
+      font-size: 1rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--accent);
@@ -53,7 +52,7 @@
 
     .hero-subtitle {
       font-family: 'Cambria', serif;
-      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
@@ -61,9 +60,9 @@
     }
 
     .hero-desc {
-      max-width: 720px;
+      max-width: 560px;
       color: var(--text-dim);
-      font-size: 1.05rem;
+      font-size: 1.25rem;
       line-height: 1.7;
       margin-bottom: 2.5rem;
     }
@@ -161,7 +160,7 @@
     <h1 class="hero-title">ALMA</h1>
     <p class="hero-subtitle">AI Local Milan Advisor</p>
     <p class="hero-desc">
-      Every morning, ALMA wakes before the team. She reads Milan's events agenda, checks the weather forecast, and delivers a one-minute video briefing — <strong style="color: var(--accent);">fully automated with AI, zero manual steps</strong> — every weekday at 9 AM.
+      Every morning, ALMA wakes before the team — reads Milan's events, checks the forecast, and delivers a one-minute video briefing. <strong style="color: var(--accent);">Fully automated with AI, zero manual steps.</strong>
     </p>
     <div class="hero-ctas">
       <a href="today.html" class="btn btn-primary">Watch today's briefing</a>
@@ -189,8 +188,7 @@
     <div class="container">
       <h2>What ALMA does</h2>
       <p style="color: var(--text-dim); max-width: 600px;">
-        ALMA is a daily AI concierge for the Milan office. Each morning it pulls real city data,
-        writes a personalised briefing in its own voice, and delivers it as a video — automatically.
+        ALMA is a daily AI concierge for the Milan office — pulling real city data, writing its own script, and delivering it as a video. No human in the loop.
       </p>
 
       <div class="what-grid">
