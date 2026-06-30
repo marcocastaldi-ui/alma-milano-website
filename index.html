@@ -59,11 +59,18 @@
     }
 
     .hero-desc {
-      max-width: 560px;
+      max-width: 800px;
       color: var(--text-dim);
       font-size: 1.25rem;
       line-height: 1.7;
       margin-bottom: 2.5rem;
+      white-space: normal;
+    }
+
+    .hero-desc-mobile { display: none; }
+    @media (max-width: 640px) {
+      .hero-desc-desktop { display: none; }
+      .hero-desc-mobile { display: block; }
     }
 
     .hero-ctas {
@@ -180,10 +187,19 @@
     <p class="hero-eyebrow">EssilorLuxottica · Performance Team · Algoritmi Ribelli</p>
     <h1 class="hero-title">ALMA</h1>
     <p class="hero-subtitle">AI Local Milan Advisor</p>
-    <p class="hero-desc">
+    <p class="hero-desc hero-desc-desktop">
       Every morning, ALMA wakes before sunrise,<br>
-      gathers Milan's event schedule, reads the forecast,<br class="br-mobile"> writes her own script,<br>
-      becomes a <strong>video briefing</strong> delivered by email<br class="br-mobile"> and archived on this website.<br><br>
+      gathers Milan's event schedule, reads the forecast, writes her own script,<br>
+      becomes a <strong>video briefing</strong> delivered by email and archived on this website.<br><br>
+      <em>Seven APIs, one seamless flow.</em><br>
+      <strong style="color: var(--accent);">Zero human in the loop.</strong>
+    </p>
+    <p class="hero-desc hero-desc-mobile">
+      Every morning, ALMA wakes before sunrise,<br>
+      gathers Milan's event schedule, reads the forecast,<br>
+      writes her own script,<br>
+      becomes a <strong>video briefing</strong> delivered by email<br>
+      and archived on this website.<br><br>
       <em>Seven APIs, one seamless flow.</em><br>
       <strong style="color: var(--accent);">Zero human in the loop.</strong>
     </p>
