@@ -73,6 +73,12 @@
       justify-content: center;
     }
 
+    .br-mobile { display: none; }
+    @media (max-width: 640px) {
+      .br-desktop { display: none; }
+      .br-mobile { display: inline; }
+    }
+
     /* Team */
     .team-section {
       background: var(--panel);
@@ -176,10 +182,8 @@
     <p class="hero-subtitle">AI Local Milan Advisor</p>
     <p class="hero-desc">
       Every morning, ALMA wakes before sunrise,<br>
-      gathers Milan's event schedule, reads the forecast,<br>
-      writes her own script,<br>
-      becomes a <strong>video briefing</strong> delivered by email<br>
-      and archived on this website.<br><br>
+      gathers Milan's event schedule, reads the forecast,<br class="br-mobile"> writes her own script,<br>
+      becomes a <strong>video briefing</strong> delivered by email<br class="br-mobile"> and archived on this website.<br><br>
       <em>Seven APIs, one seamless flow.</em><br>
       <strong style="color: var(--accent);">Zero human in the loop.</strong>
     </p>
