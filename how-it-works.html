@@ -31,8 +31,9 @@
     /* ── Diagram ── */
     .diagram-wrap {
       width: 100%;
+      max-width: 1200px;
+      margin: 1.5rem auto 0;
       overflow-x: auto;
-      margin: 1.5rem 0 0;
       padding: 0 1rem;
     }
     .diagram-wrap svg {
@@ -125,7 +126,7 @@
 
     <!-- DESKTOP diagram -->
     <div class="diagram-wrap">
-      <svg viewBox="0 0 1100 420" role="img" preserveAspectRatio="xMidYMid meet">
+      <svg viewBox="0 0 1100 450" role="img" preserveAspectRatio="xMidYMid meet">
         <title>ALMA pipeline</title>
         <defs>
           <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -134,70 +135,72 @@
         </defs>
 
         <!-- Spine -->
-        <line x1="90" y1="210" x2="1010" y2="210" stroke="#2A2622" stroke-width="2"/>
+        <line x1="170" y1="210" x2="930" y2="210" stroke="#2A2622" stroke-width="2"/>
 
         <!-- STAGE 1 — DATASET (info ABOVE) -->
-        <line x1="90" y1="162" x2="90" y2="100" stroke="#D97757" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <rect x="10" y="28" width="160" height="70" rx="8" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
-        <text x="90" y="52" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">milanopocket.it · web scraping</text>
-        <text x="90" y="68" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">Open-Meteo API (daily)</text>
-        <text x="90" y="88" text-anchor="middle" style="font-size:10px;fill:#7FAE6E;font-family:Calibri,sans-serif">2 .py · 1 YML</text>
-        <circle cx="90" cy="210" r="48" fill="#1A1612" stroke="#D97757" stroke-width="2.5"/>
-        <text x="90" y="202" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">DATASET</text>
-        <text x="90" y="218" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">CREATION</text>
-        <text x="90" y="234" text-anchor="middle" style="font-size:9.5px;fill:#9C9890;font-family:Calibri,sans-serif">once a month</text>
-        <line class="flow" x1="140" y1="210" x2="218" y2="210" stroke="#D97757" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+        <line x1="170" y1="162" x2="170" y2="100" stroke="#D97757" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <rect x="85" y="28" width="170" height="70" rx="8" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
+        <text x="170" y="52" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">milanopocket.it · web scraping</text>
+        <text x="170" y="68" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">Open-Meteo API (daily)</text>
+        <text x="170" y="88" text-anchor="middle" style="font-size:10px;fill:#7FAE6E;font-family:Calibri,sans-serif">2 .py · 1 YML</text>
+        <circle cx="170" cy="210" r="48" fill="#1A1612" stroke="#D97757" stroke-width="2.5"/>
+        <text x="170" y="202" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">DATASET</text>
+        <text x="170" y="218" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">CREATION</text>
+        <text x="170" y="234" text-anchor="middle" style="font-size:9.5px;fill:#9C9890;font-family:Calibri,sans-serif">once a month</text>
+        <line class="flow" x1="220" y1="210" x2="298" y2="210" stroke="#D97757" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
 
         <!-- STAGE 2 — SPEECH (info BELOW) -->
-        <line x1="280" y1="260" x2="280" y2="320" stroke="#E8C181" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <rect x="200" y="322" width="160" height="70" rx="8" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
-        <text x="280" y="346" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif">Claude Sonnet</text>
-        <text x="280" y="362" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">target 25–45yo · weather+events</text>
-        <text x="280" y="382" text-anchor="middle" style="font-size:10px;fill:#7FAE6E;font-family:Calibri,sans-serif">2 .py · 1 YML</text>
-        <circle cx="280" cy="210" r="48" fill="#1A1612" stroke="#E8C181" stroke-width="2.5"/>
-        <text x="280" y="202" text-anchor="middle" style="font-size:11px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">SPEECH</text>
-        <text x="280" y="218" text-anchor="middle" style="font-size:11px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">GENERATION</text>
-        <text x="280" y="234" text-anchor="middle" style="font-size:9.5px;fill:#9C9890;font-family:Calibri,sans-serif">daily · 09:00</text>
-        <line class="flow" x1="330" y1="210" x2="408" y2="210" stroke="#E8C181" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+        <line x1="360" y1="260" x2="360" y2="320" stroke="#E8C181" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <rect x="280" y="322" width="160" height="70" rx="8" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
+        <text x="360" y="346" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif">Claude Sonnet</text>
+        <text x="360" y="362" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">target 25–45yo · weather+events</text>
+        <text x="360" y="382" text-anchor="middle" style="font-size:10px;fill:#7FAE6E;font-family:Calibri,sans-serif">2 .py · 1 YML</text>
+        <circle cx="360" cy="210" r="48" fill="#1A1612" stroke="#E8C181" stroke-width="2.5"/>
+        <text x="360" y="202" text-anchor="middle" style="font-size:11px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">SPEECH</text>
+        <text x="360" y="218" text-anchor="middle" style="font-size:11px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">GENERATION</text>
+        <text x="360" y="234" text-anchor="middle" style="font-size:9.5px;fill:#9C9890;font-family:Calibri,sans-serif">daily · 09:00</text>
+        <line class="flow" x1="410" y1="210" x2="488" y2="210" stroke="#E8C181" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
 
-        <!-- STAGE 3 — VIDEO (info ABOVE) -->
-        <line x1="470" y1="162" x2="470" y2="100" stroke="#D97757" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <rect x="380" y="28" width="180" height="70" rx="8" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
-        <text x="470" y="52" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">ElevenLabs TTS · Kling avatar</text>
-        <text x="470" y="68" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">Whisper · ffmpeg</text>
-        <text x="470" y="88" text-anchor="middle" style="font-size:10px;fill:#7FAE6E;font-family:Calibri,sans-serif">1 .py · 1 YML</text>
-        <circle cx="470" cy="210" r="48" fill="#1A1612" stroke="#D97757" stroke-width="2.5"/>
-        <text x="470" y="202" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">VIDEO</text>
-        <text x="470" y="218" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">GENERATION</text>
-        <text x="470" y="234" text-anchor="middle" style="font-size:9.5px;fill:#9C9890;font-family:Calibri,sans-serif">~20 min</text>
-        <line class="flow" x1="520" y1="210" x2="598" y2="210" stroke="#D97757" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+        <!-- STAGE 3 — VIDEO (info ABOVE) — CENTER of viewBox -->
+        <line x1="550" y1="162" x2="550" y2="100" stroke="#D97757" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <rect x="460" y="28" width="180" height="70" rx="8" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
+        <text x="550" y="52" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">ElevenLabs TTS · Kling avatar</text>
+        <text x="550" y="68" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">Whisper · ffmpeg</text>
+        <text x="550" y="88" text-anchor="middle" style="font-size:10px;fill:#7FAE6E;font-family:Calibri,sans-serif">1 .py · 1 YML</text>
+        <circle cx="550" cy="210" r="48" fill="#1A1612" stroke="#D97757" stroke-width="2.5"/>
+        <text x="550" y="202" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">VIDEO</text>
+        <text x="550" y="218" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">GENERATION</text>
+        <text x="550" y="234" text-anchor="middle" style="font-size:9.5px;fill:#9C9890;font-family:Calibri,sans-serif">~20 min</text>
+        <line class="flow" x1="600" y1="210" x2="678" y2="210" stroke="#D97757" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
 
         <!-- STAGE 4 — EMAIL (info BELOW) -->
-        <line x1="660" y1="260" x2="660" y2="320" stroke="#E8C181" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <rect x="580" y="322" width="160" height="70" rx="8" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
-        <text x="660" y="346" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">Resend API</text>
-        <text x="660" y="362" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">84 recipients · HTML + CTA</text>
-        <text x="660" y="382" text-anchor="middle" style="font-size:10px;fill:#7FAE6E;font-family:Calibri,sans-serif">1 .py · 1 YML</text>
-        <circle cx="660" cy="210" r="48" fill="#1A1612" stroke="#E8C181" stroke-width="2.5"/>
-        <text x="660" y="202" text-anchor="middle" style="font-size:11px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">EMAIL</text>
-        <text x="660" y="218" text-anchor="middle" style="font-size:11px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">SEND</text>
-        <text x="660" y="234" text-anchor="middle" style="font-size:9.5px;fill:#9C9890;font-family:Calibri,sans-serif">daily · automated</text>
-        <line class="flow" x1="710" y1="210" x2="788" y2="210" stroke="#E8C181" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+        <line x1="740" y1="260" x2="740" y2="320" stroke="#E8C181" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <rect x="660" y="322" width="160" height="70" rx="8" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
+        <text x="740" y="346" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">Resend API</text>
+        <text x="740" y="362" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">84 recipients · HTML + CTA</text>
+        <text x="740" y="382" text-anchor="middle" style="font-size:10px;fill:#7FAE6E;font-family:Calibri,sans-serif">1 .py · 1 YML</text>
+        <circle cx="740" cy="210" r="48" fill="#1A1612" stroke="#E8C181" stroke-width="2.5"/>
+        <text x="740" y="202" text-anchor="middle" style="font-size:11px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">EMAIL</text>
+        <text x="740" y="218" text-anchor="middle" style="font-size:11px;fill:#E8C181;font-family:Calibri,sans-serif;font-weight:700">SEND</text>
+        <text x="740" y="234" text-anchor="middle" style="font-size:9.5px;fill:#9C9890;font-family:Calibri,sans-serif">daily · automated</text>
+        <line class="flow" x1="790" y1="210" x2="868" y2="210" stroke="#E8C181" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
 
         <!-- STAGE 5 — WEBSITE (info ABOVE) -->
-        <line x1="850" y1="162" x2="850" y2="100" stroke="#D97757" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <rect x="760" y="28" width="180" height="70" rx="8" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
-        <text x="850" y="52" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif">Built by Claude Sonnet</text>
-        <text x="850" y="68" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">Supabase live · archive auto</text>
-        <text x="850" y="88" text-anchor="middle" style="font-size:10px;fill:#7FAE6E;font-family:Calibri,sans-serif">Vercel autodeploy</text>
-        <circle cx="850" cy="210" r="48" fill="#1A1612" stroke="#D97757" stroke-width="2.5"/>
-        <text x="850" y="202" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">WEBSITE</text>
-        <text x="850" y="218" text-anchor="middle" style="font-size:8.5px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">alma-milano.com</text>
-        <text x="850" y="234" text-anchor="middle" style="font-size:9.5px;fill:#9C9890;font-family:Calibri,sans-serif">live · always on</text>
+        <line x1="930" y1="162" x2="930" y2="100" stroke="#D97757" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <rect x="845" y="28" width="170" height="70" rx="8" fill="#1A1612" stroke="#2A2622" stroke-width="0.5"/>
+        <text x="930" y="52" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif">Built by Claude Sonnet</text>
+        <text x="930" y="68" text-anchor="middle" style="font-size:11px;fill:#9C9890;font-family:Calibri,sans-serif">Supabase live · archive auto</text>
+        <text x="930" y="88" text-anchor="middle" style="font-size:10px;fill:#7FAE6E;font-family:Calibri,sans-serif">Vercel autodeploy</text>
+        <circle cx="930" cy="210" r="48" fill="#1A1612" stroke="#D97757" stroke-width="2.5"/>
+        <text x="930" y="202" text-anchor="middle" style="font-size:11px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">WEBSITE</text>
+        <text x="930" y="218" text-anchor="middle" style="font-size:8.5px;fill:#D97757;font-family:Calibri,sans-serif;font-weight:700">alma-milano.com</text>
+        <text x="930" y="234" text-anchor="middle" style="font-size:9.5px;fill:#9C9890;font-family:Calibri,sans-serif">live · always on</text>
 
         <!-- Backbone bars -->
         <rect x="10" y="408" width="1080" height="14" rx="5" fill="#1A1612" stroke="#1d5c3a" stroke-width="0.5"/>
         <text x="550" y="419" text-anchor="middle" style="font-size:10px;fill:#3ECF8E;font-family:Calibri,sans-serif;font-weight:700">Supabase — shared backbone · events · speeches · videos · weather</text>
+        <rect x="10" y="426" width="1080" height="14" rx="5" fill="#1A1612" stroke="#444" stroke-width="0.5"/>
+        <text x="550" y="437" text-anchor="middle" style="font-size:10px;fill:#9C9890;font-family:Calibri,sans-serif;font-weight:700">GitHub Actions — orchestration · 4 YML workflows · 0 manual steps</text>
       </svg>
     </div>
 
